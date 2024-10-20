@@ -1,11 +1,13 @@
-#include "iterators/iterators.cpp"
+/*#include "iterators/iterators.cpp"*/
+/*#include "sorts/sorts.cpp"*/
+#include "practice2/practice2.cpp"
 #include <iostream>
 
 int main() {
-  std::vector<int> tst = {2, 2, 4, 5};
-  IteratorSolutions s;
+  std::string word = "alporfmdqsbhncwyu";
+  Practice2Solution solutions;
 
-  std::cout << s.partitionArray(tst, 0) << std::endl;
+  int res = solutions.minimumPushes(word);
 
-  return 0;
+  std::cout << res << std::endl;
 }
