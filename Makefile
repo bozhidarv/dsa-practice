@@ -13,5 +13,12 @@ compile-iterator:
 compile-dev:
 	$(CR_OUT_DIR) && $(CC) $(FLAGS) $(FILES) $(DEVFLAGS) -o ./out/main
 
+compile-sorts:
+	$(CR_OUT_DIR) && $(CC) $(FLAGS) $(DEVFLAGS) $(FILES) ./sorts/sorts.cpp -o ./out/main
+
+
+compile-2:
+	$(CR_OUT_DIR) && $(CC) $(FLAGS) $(DEVFLAGS) $(FILES) ./practice2/practice2.cpp -o ./out/main
+
 run:
 	./out/main
