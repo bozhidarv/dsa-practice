@@ -20,5 +20,11 @@ compile-sorts:
 compile-2:
 	$(CR_OUT_DIR) && $(CC) $(FLAGS) $(DEVFLAGS) $(FILES) ./practice2/practice2.cpp -o ./out/main
 
+compile-3:
+	$(CR_OUT_DIR) && $(CC) $(FLAGS) $(DEVFLAGS) $(FILES) ./practice3/practice3.cpp -o ./out/main
+
+compile-4:
+	$(CR_OUT_DIR) && $(CC) $(FLAGS) $(DEVFLAGS) $(FILES) ./practice4/practice4.cpp -o ./out/main
+
 run:
 	./out/main
