@@ -1,9 +1,8 @@
 #include <cstddef>
-#include <deque>
 #include <queue>
-#include <stack>
 #include <string>
 #include <vector>
+
 class Solution {
 public:
   int maxDepth(std::string s) {
@@ -48,6 +47,40 @@ public:
     return friends.back();
   }
 
+  int findTheWinnerVector(int n, int k) {
+    if (n == 1) {
+      return n;
+    }
+
+    std::vector<int> friends;
+
+    for (int i = 1; i <= n; i++) {
+      friends.push_back(i);
+    }
+
+    int currCounter = 1;
+    auto currIdx = friends.begin();
+    while (true) {
+      while (currCounter < k) {
+        currIdx++;
+        if (currIdx == friends.end()) {
+          currIdx = friends.begin();
+        }
+        currCounter++;
+      }
+
+      friends.erase(currIdx);
+      if (currIdx == friends.end()) {
+        currIdx = friends.begin();
+      }
+      if (friends.size() == 1) {
+        return friends[0];
+      }
+      currCounter = 1;
+    }
+    return 0;
+  }
+
   int minOperations(std::vector<std::string> &logs) {
     int currOperations = 0;
     for (size_t i = 0; i < logs.size(); i++) {
@@ -60,17 +93,94 @@ public:
     }
     return currOperations;
   }
+
+  int totalSteps(std::vector<int> &nums) {
+    std::queue<int> origQueue;
+
+    for (size_t i = 0; i < nums.size(); i++) {
+      origQueue.push(nums[i]);
+    }
+
+    std::queue<int> newQueue;
+    bool isDecreasing = false;
+    bool isCurrElDecresing = false;
+    int noSteps = 0;
+    int currNum = 0;
+    while (true) {
+      while (!origQueue.empty()) {
+        currNum = origQueue.front();
+        origQueue.pop();
+        if (!isCurrElDecresing) {
+          newQueue.push(currNum);
+        }
+        if (currNum > origQueue.front() && !origQueue.empty()) {
+          isCurrElDecresing = true;
+          if (!isDecreasing) {
+            isDecreasing = true;
+          }
+        } else {
+          isCurrElDecresing = false;
+        }
+      }
+      if (!isDecreasing) {
+        return noSteps;
+      }
+
+      noSteps++;
+      origQueue = newQueue;
+      newQueue = std::queue<int>();
+      isDecreasing = false;
+      isCurrElDecresing = false;
+    }
+
+    return 0;
+  }
+};
+
+struct ListNode {
+  int val;
+  ListNode *next;
 };
 
 class MinStack {
+  int min;
+  ListNode *head;
+  ListNode *mins;
+
 public:
-  MinStack() {}
+  MinStack() {
+    head = nullptr;
+    mins = nullptr;
+  }
 
-  void push(int val) {}
+  void push(int val) {
+    if (head == nullptr || val <= mins->val) {
+      mins = new ListNode{val, mins};
+    }
+    head = new ListNode{val, head};
+  }
 
-  void pop() {}
+  void pop() {
+    if (head == nullptr) {
+      return;
+    }
 
-  int top() {}
+    if (head->val == mins->val) {
+      ListNode *tempMins = mins->next;
+      delete mins;
+      mins = tempMins;
+    }
 
-  int getMin() {}
+    ListNode *tempHead = head->next;
+    delete head;
+    head = tempHead;
+
+    if (mins == nullptr && head != nullptr) {
+      mins = new ListNode{head->val, nullptr};
+    }
+  }
+
+  int top() { return head->val; }
+
+  int getMin() { return mins->val; }
 };
