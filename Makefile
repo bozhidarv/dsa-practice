@@ -35,5 +35,8 @@ compile-7:
 compile-8:
 	$(CR_OUT_DIR) && $(CC) $(FLAGS) $(DEVFLAGS) $(FILES) ./practice8/practice8.cpp -o ./out/main
 
+compile-9:
+	$(CR_OUT_DIR) && $(CC) $(FLAGS) $(DEVFLAGS) $(FILES) ./practice9/practice9.cpp -o ./out/main
+
 run:
 	./out/main
