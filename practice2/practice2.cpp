@@ -6,16 +6,20 @@
 
 class Practice2Solution {
 private:
-  static bool closer(const std::vector<int> &point1, const std::vector<int> &point2) {
-    auto dist1 = std::sqrt((point1[0] - 0) * (point1[0] - 0) + (point1[1] - 0) * (point1[1] - 0));
+  static bool closer(const std::vector<int> &point1,
+                     const std::vector<int> &point2) {
+    auto dist1 = std::sqrt((point1[0] - 0) * (point1[0] - 0) +
+                           (point1[1] - 0) * (point1[1] - 0));
 
-    auto dist2 = std::sqrt((point2[0] - 0) * (point2[0] - 0) + (point2[1] - 0) * (point2[1] - 0));
+    auto dist2 = std::sqrt((point2[0] - 0) * (point2[0] - 0) +
+                           (point2[1] - 0) * (point2[1] - 0));
 
     return dist1 < dist2;
   }
 
 public:
-  std::vector<int> intersection(std::vector<int> &nums1, std::vector<int> &nums2) {
+  std::vector<int> intersection(std::vector<int> &nums1,
+                                std::vector<int> &nums2) {
     std::vector<int> intersection;
 
     std::sort(nums1.begin(), nums1.end());
@@ -24,7 +28,8 @@ public:
     for (auto i = nums1.begin(); i < nums1.end(); i++) {
       for (auto j = nums2.begin(); j < nums2.end(); j++) {
         if (*i == *j) {
-          if (!std::binary_search(intersection.begin(), intersection.end(), *i)) {
+          if (!std::binary_search(intersection.begin(), intersection.end(),
+                                  *i)) {
             intersection.push_back(*i);
           }
         }
@@ -34,7 +39,8 @@ public:
     return intersection;
   }
 
-  std::vector<std::vector<int>> kClosest(std::vector<std::vector<int>> &points, int k) {
+  std::vector<std::vector<int>> kClosest(std::vector<std::vector<int>> &points,
+                                         int k) {
     std::vector<std::vector<int>> closest;
 
     std::sort(points.begin(), points.end(), closer);
@@ -65,7 +71,8 @@ public:
     return score;
   }
 
-  int minProcessingTime(std::vector<int> &processorTime, std::vector<int> &tasks) {
+  int minProcessingTime(std::vector<int> &processorTime,
+                        std::vector<int> &tasks) {
     std::sort(processorTime.begin(), processorTime.end(), std::greater<int>());
     std::sort(tasks.begin(), tasks.end());
 
@@ -109,7 +116,8 @@ public:
 
     letterOccurances.push_back(currCharCounter);
 
-    std::sort(letterOccurances.begin(), letterOccurances.end(), std::greater<int>());
+    std::sort(letterOccurances.begin(), letterOccurances.end(),
+              std::greater<int>());
 
     int result = 0;
     int keyPresses = 0;

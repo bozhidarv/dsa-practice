@@ -10,7 +10,8 @@ struct TreeNode {
   TreeNode *right;
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+  TreeNode(int x, TreeNode *left, TreeNode *right)
+      : val(x), left(left), right(right) {}
 };
 
 struct ListNode {
@@ -111,8 +112,9 @@ public:
   }
 
   ListNode *mergeKLists(std::vector<ListNode *> &lists) {
-    std::priority_queue<std::pair<int, ListNode *>, std::vector<std::pair<int, ListNode *>>,
-        std::greater<std::pair<int, ListNode *>>>
+    std::priority_queue<std::pair<int, ListNode *>,
+                        std::vector<std::pair<int, ListNode *>>,
+                        std::greater<std::pair<int, ListNode *>>>
         pq;
     for (const auto &list : lists) {
       ListNode *currEl = list;
@@ -172,8 +174,8 @@ class KthLargest {
 
 public:
   KthLargest(int k, std::vector<int> &nums) {
-    elements =
-        std::priority_queue<int, std::vector<int>, std::greater<int>>(nums.begin(), nums.end());
+    elements = std::priority_queue<int, std::vector<int>, std::greater<int>>(
+        nums.begin(), nums.end());
     this->k = k;
   }
 

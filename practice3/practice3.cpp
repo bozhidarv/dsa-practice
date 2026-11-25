@@ -8,7 +8,8 @@ public:
   int countInversions(std::vector<int> numbers) {
 
     auto cpy = numbers;
-    std::vector<int> placeholders(*(std::max_element(numbers.begin(), numbers.end())));
+    std::vector<int> placeholders(
+        *(std::max_element(numbers.begin(), numbers.end())));
 
     int numOfInversions = 0;
 
